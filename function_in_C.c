@@ -14,14 +14,13 @@
 //     }
 // }
 
-int SumOfNumber(numb1, numb2)
+int SumOfNumber(int numb1, int numb2)
 {
     return numb1 + numb2;
 }
 
 int main()
-{
-
+{   
     printf("the Result is = %d\n", SumOfNumber(23, 78));
     return 0;
 }

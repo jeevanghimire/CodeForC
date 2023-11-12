@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#define Newline (printf("\n"));
 void print_loop(int *array, int n)
 {
     int i;
@@ -8,7 +8,7 @@ void print_loop(int *array, int n)
     {
         printf("%d ", array[i]);
     }
-    printf("\n");
+    Newline
 }
 int main()
 {
