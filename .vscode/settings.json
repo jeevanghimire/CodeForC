@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.asm": "asm-intel-x86-generic",
-        "MakeFile": "makefile",
-        "_types.h": "c",
-        "stdio.h": "c"
-    }
-}
