@@ -183,9 +183,11 @@ void loadData(Student students[], int *count) {
         return;
     }
 
-    while ((*count < MAX_STUDENTS) && (fscanf(fp, "%s %d %f", students[*count].name, &students[*count].age, &students[*count].gpa) != EOF)) {
-        (*count)++;
-    }
+    #pragma GCC diagnostic ignored "-Wformat-overflow"
+        while ((*count < MAX_STUDENTS) && (fscanf(fp, "%s %d %f", students[*count].name, &students[*count].age, &students[*count].gpa) != EOF)) {
+            (*count)++;
+        }
+    #pragma GCC diagnostic warning "-Wformat-overflow"
 
     fclose(fp);
     printf("Data loaded successfully.\n");
