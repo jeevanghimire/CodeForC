@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -92,10 +90,19 @@ void inputMenuItems(MenuItem menu[], int numItems) {
   }
 }
 
-void printMenu(MenuItem menu[], int numItems) {
-  printf("\nMenu:\n");
+void printBill(MenuItem menu[], int numItems, float totalBill, int discount) {
+  float discountAmt = 0;
+  printf("**********************************************\n");
   for (int i = 0; i < numItems; i++) {
     printf("%d. %s - NRS%.2f\n", i + 1, menu[i].name, menu[i].price);
+  }
+  printf("**********************************************\n");
+  printf("Total Bill: NRS%.2f\n", totalBill);
+  
+  if (discount == 1) {
+    discountAmt = totalBill * 0.1;
+    printf("Discount Applied: NRS%.2f\n", discountAmt);
+    printf("Discounted Bill: NRS%.2f\n", totalBill - discountAmt);
   }
 }
 
@@ -137,6 +144,35 @@ void printBill(MenuItem menu[], int numItems, float totalBill,int discount) {
   printf("**********************************************\n");
 }
 
+void printMenu(MenuItem menu[], int numItems) {
+  printf("**********************************************\n");
+  for (int i = 0; i < numItems; i++) {
+    NEW_LINE
+    printf("%d. %s - NRS%.2f\n", i + 1, menu[i].name, menu[i].price);
+  }
+    NEW_LINE
+  printf("**********************************************\n");
+}
+
+void getUserInfo(){
+  Users users;
+  FILE *fptr;
+  fptr = fopen("data.txt", "r");
+  if (fptr == NULL) {
+    printf("Error!");
+    exit(1);
+  }
+  fscanf(fptr, "Name: %s\n", users.name);
+  fscanf(fptr, "Age: %d\n", &users.age);
+  fscanf(fptr, "Adress: %s\n", users.adress);
+  fscanf(fptr, "Phone: %d\n", &users.phone);
+  printf("Name: %s\n", users.name);
+  printf("Age: %d\n", users.age);
+  printf("Adress: %s\n", users.adress);
+  printf("Phone: %d\n", users.phone);
+  fclose(fptr);
+}
+
 int main() {
   MenuItem menu[MAX_MENU_ITEMS];
   int numItems;
@@ -144,10 +180,28 @@ int main() {
   int discount=0;
   discount = TableNumber();
   printf("Enter the number of menu items: \n");
+
   scanf("%d", &numItems);
+  if (numItems > MAX_MENU_ITEMS) {
+    printf("Number of menu items cannot exceed %d\n", MAX_MENU_ITEMS);
+    return 1;
+  }
   inputMenuItems(menu, numItems);
   printMenu(menu, numItems);
+  
   generateBill(menu, numItems, &totalBill);
+
   printBill(menu, numItems, totalBill,discount);
+  NEW_LINE
+  printf("Do you want to see your details?(Y/N)\n");
+  char Decision;
+  scanf(" %c", &Decision);
+  if (Decision == 'y' || Decision == 'Y') {
+    getUserInfo();
+  }
+  else{
+    printf("Thank you for visiting our restaurant!\n");
+  }
+
   return 0;
 }
