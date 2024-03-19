@@ -90,49 +90,41 @@ void inputMenuItems(MenuItem menu[], int numItems) {
   }
 }
 
-void printBill(MenuItem menu[], int numItems, float totalBill, int discount) {
-  float discountAmt = 0;
-  printf("**********************************************\n");
-  for (int i = 0; i < numItems; i++) {
-    printf("%d. %s - NRS%.2f\n", i + 1, menu[i].name, menu[i].price);
-  }
-  printf("**********************************************\n");
-  printf("Total Bill: NRS%.2f\n", totalBill);
-  
-  if (discount == 1) {
-    discountAmt = totalBill * 0.1;
-    printf("Discount Applied: NRS%.2f\n", discountAmt);
-    printf("Discounted Bill: NRS%.2f\n", totalBill - discountAmt);
-  }
-}
-
-void generateBill(MenuItem menu[], int numItems, float *totalBill) {
+void generateBill(MenuItem menu[], int numItems, float *totalBill)
+{
   int numOrders;
   printf("\nEnter the number of orders: ");
   scanf("%d", &numOrders);
 
-  for (int i = 0; i < numOrders; i++) {
+  for (int i = 0; i < numOrders; i++)
+  {
     int orderNumber;
     printf("\nEnter the order number for order %d: ", i + 1);
     scanf("%d", &orderNumber);
 
-    if (orderNumber >= 1 && orderNumber <= numItems) {
+    if (orderNumber >= 1 && orderNumber <= numItems)
+    {
       *totalBill += menu[orderNumber - 1].price;
-    } else {
+    }
+    else
+    {
       printf("Invalid order number!\n");
       // Retry the current order
     }
   }
 }
 
-void printBill(MenuItem menu[], int numItems, float totalBill,int discount) {
-  float dicountAmt=0;
+void printBill(MenuItem menu[], int numItems, float totalBill, int discount)
+{
+  float dicountAmt = 0;
   printf("**********************************************\n");
-  for (int i=0;i<numItems;i++){
+  for (int i = 0; i < numItems; i++)
+  {
     printf("*\t%d. %s - NRS%.2f\t\t\t*\n", i + 1, menu[i].name, menu[i].price);
   }
-  //apply the dicount
-  if(discount!=0){
+  // apply the dicount
+  if (discount != 0)
+  {
     dicountAmt = totalBill - (totalBill * 0.1);
   }
   printf("\n");
@@ -144,21 +136,25 @@ void printBill(MenuItem menu[], int numItems, float totalBill,int discount) {
   printf("**********************************************\n");
 }
 
-void printMenu(MenuItem menu[], int numItems) {
+void printMenu(MenuItem menu[], int numItems)
+{
   printf("**********************************************\n");
-  for (int i = 0; i < numItems; i++) {
+  for (int i = 0; i < numItems; i++)
+  {
     NEW_LINE
     printf("%d. %s - NRS%.2f\n", i + 1, menu[i].name, menu[i].price);
   }
-    NEW_LINE
+  NEW_LINE
   printf("**********************************************\n");
 }
 
-void getUserInfo(){
+void getUserInfo()
+{
   Users users;
   FILE *fptr;
   fptr = fopen("data.txt", "r");
-  if (fptr == NULL) {
+  if (fptr == NULL)
+  {
     printf("Error!");
     exit(1);
   }
@@ -173,31 +169,40 @@ void getUserInfo(){
   fclose(fptr);
 }
 
-int main() {
+int main()
+{
   MenuItem menu[MAX_MENU_ITEMS];
   int numItems;
   float totalBill = 0.0;
-  int discount=0;
+  int discount = 0;
   discount = TableNumber();
   printf("Enter the number of menu items: \n");
 
   scanf("%d", &numItems);
-  if (numItems > MAX_MENU_ITEMS) {
+  if (numItems > MAX_MENU_ITEMS)
+  {
     printf("Number of menu items cannot exceed %d\n", MAX_MENU_ITEMS);
     return 1;
   }
   inputMenuItems(menu, numItems);
   printMenu(menu, numItems);
-  
+
   generateBill(menu, numItems, &totalBill);
 
-  printBill(menu, numItems, totalBill,discount);
+  printBill(menu, numItems, totalBill, discount);
   NEW_LINE
   printf("Do you want to see your details?(Y/N)\n");
   char Decision;
   scanf(" %c", &Decision);
-  if (Decision == 'y' || Decision == 'Y') {
+  if (Decision == 'y' || Decision == 'Y')
+  {
     getUserInfo();
+  }
+  printf("Do you want to see your bill Menu(Y/N)\n");
+  scanf(" %c", &Decision);
+  if (Decision == 'y' || Decision == 'Y')
+  {
+    printMenu(menu, discount);
   }
   else{
     printf("Thank you for visiting our restaurant!\n");
