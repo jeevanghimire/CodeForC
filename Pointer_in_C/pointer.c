@@ -1,42 +1,47 @@
+//swap two variable
+//using function pointer arrange float array in ascending order
 #include <stdio.h>
 
-struct video{
-char title[100];
-char formate[200];
-};
+void swap(int *a, int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-int main(){
-    //printing the size of data type
-    printf("size of (int) = %d\n",sizeof(int));
-    printf("size of (double) = %d\n",sizeof(double));
-    printf("size of (struct) = %d\n\n",sizeof(struct video));
-    
-    //Now Printing the size of Pointer::
+void sort(float *arr, int n)
+{
+    int i, j;
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = 0; j < n - i - 1; j++)
+        {
+            if(arr[j]>arr[j+1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
 
-    printf("size of (int) = %d\n",sizeof(int *));
-    printf("size of (double) = %d\n",sizeof(double *));
-    printf("size of (struct) = %d\n\n",sizeof(struct video *));
 
-    //Printing the size of Void Pointer::
+int main()
+{
+    int a = 10, b = 20;
+    printf("Before swap: a = %d, b = %d\n", a, b);
+    swap(&a, &b);
+    printf("After swap: a = %d, b = %d\n", a, b);
 
-    printf("size of (void Pointer) = %d\n\n",sizeof(void *));
-
-    //creating some variables
-    int count = 99;
-    struct video volume1= {"Learning C","AV1"};
-    //creating a generic pointer::
-    void *generic_pointer = NULL;
-
-    //using generic pointer to point the Count::
-    generic_pointer = &count;
-    printf("count = %d\n\n",*((int *)generic_pointer));
-    
-    //Now Generic pointer point to struct video adress::
-
-    generic_pointer = &volume1;
-    printf("Volume1 = %d\n\n",((struct video *)generic_pointer)->formate);
-
-    
-
-return 0;
+    float arr[] = {2.3, 4.5, 1.2, 3.4, 5.6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    sort(arr, n);
+    printf("Array in ascending order: ");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%f ", arr[i]);
+    }
+    return 0;
 }
