@@ -1,15 +1,4 @@
-//swap two variable
-//using function pointer arrange float array in ascending order
 #include <stdio.h>
-
-void swap(int *a, int *b)
-{
-    int temp;
-    temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
 void sort(float *arr, int n)
 {
     int i, j;

@@ -2,38 +2,37 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_STUDENTS 100
+#define MAX_PATIENTS 100
 #define MAX_NAME_LENGTH 50
 
-// Structure to hold student information
+// Structure to hold patient information
 typedef struct {
     char name[MAX_NAME_LENGTH];
     int age;
-    float gpa;
-} Student;
+    char gender[MAX_NAME_LENGTH];
+    char diagnosis[MAX_NAME_LENGTH];
+} Patient;
 
 // Function prototypes
-void addStudent(Student students[], int *count);
-void editStudent(Student students[], int count);
-void deleteStudent(Student students[], int *count);
-void displayStudents(Student students[], int count);
-void saveData(Student students[], int count);
-void loadData(Student students[], int *count);
+void addPatient(Patient patients[], int *count);
+void editPatient(Patient patients[], int count);
+void deletePatient(Patient patients[], int *count);
+void displayPatients(Patient patients[], int count);
+void saveData(Patient patients[], int count);
+void loadData(Patient patients[], int *count);
 
 int main() {
-    Student students[MAX_STUDENTS];
+    Patient patients[MAX_PATIENTS];
     int count = 0;
     int choice;
-
     // Load existing data from file
-    loadData(students, &count);
-
+    loadData(patients, &count);
     do {
-        printf("\nStudent Database Management System\n");
-        printf("1. Add Student\n");
-        printf("2. Edit Student\n");
-        printf("3. Delete Student\n");
-        printf("4. Display Students\n");
+        printf("\nHospital Management System\n");
+        printf("1. Add Patient\n");
+        printf("2. Edit Patient\n");
+        printf("3. Delete Patient\n");
+        printf("4. Display Patients\n");
         printf("5. Save Data\n");
         printf("6. Exit\n");
         printf("Enter your choice: ");
@@ -41,19 +40,19 @@ int main() {
 
         switch(choice) {
             case 1:
-                addStudent(students, &count);
+                addPatient(patients, &count);
                 break;
             case 2:
-                editStudent(students, count);
+                editPatient(patients, count);
                 break;
             case 3:
-                deleteStudent(students, &count);
+                deletePatient(patients, &count);
                 break;
             case 4:
-                displayStudents(students, count);
+                displayPatients(patients, count);
                 break;
             case 5:
-                saveData(students, count);
+                saveData(patients, count);
                 break;
             case 6:
                 printf("Exiting program.\n");
@@ -66,109 +65,113 @@ int main() {
     return 0;
 }
 
-// Function to add a student
-void addStudent(Student students[], int *count) {
-    if (*count >= MAX_STUDENTS) {
-        printf("Database is full. Cannot add more students.\n");
+// Function to add a patient
+void addPatient(Patient patients[], int *count) {
+    if (*count >= MAX_PATIENTS) {
+        printf("Hospital is full. Cannot add more patients.\n");
         return;
     }
 
-    Student newStudent;
-    printf("Enter student name: ");
-    scanf("%s", newStudent.name);
-    printf("Enter student age: ");
-    scanf("%d", &newStudent.age);
-    printf("Enter student GPA: ");
-    scanf("%f", &newStudent.gpa);
+    Patient newPatient;
+    printf("Enter patient name: ");
+    scanf("%s", newPatient.name);
+    printf("Enter patient age: ");
+    scanf("%d", &newPatient.age);
+    printf("Enter patient gender: ");
+    scanf("%s", newPatient.gender);
+    printf("Enter patient diagnosis: ");
+    scanf("%s", newPatient.diagnosis);
 
-    students[*count] = newStudent;
+    patients[*count] = newPatient;
     (*count)++;
 
-    printf("Student added successfully.\n");
+    printf("Patient added successfully.\n");
 }
 
-// Function to edit a student
-void editStudent(Student students[], int count) {
+// Function to edit a patient
+void editPatient(Patient patients[], int count) {
     if (count == 0) {
-        printf("No students to edit.\n");
+        printf("No patients to edit.\n");
         return;
     }
 
     char searchName[MAX_NAME_LENGTH];
-    printf("Enter name of student to edit: ");
+    printf("Enter name of patient to edit: ");
     scanf("%s", searchName);
 
     int found = 0;
     for (int i = 0; i < count; i++) {
-        if (strcmp(students[i].name, searchName) == 0) {
-            printf("Enter new age for %s: ", students[i].name);
-            scanf("%d", &students[i].age);
-            printf("Enter new GPA for %s: ", students[i].name);
-            scanf("%f", &students[i].gpa);
+        if (strcmp(patients[i].name, searchName) == 0) {
+            printf("Enter new age for %s: ", patients[i].name);
+            scanf("%d", &patients[i].age);
+            printf("Enter new gender for %s: ", patients[i].name);
+            scanf("%s", patients[i].gender);
+            printf("Enter new diagnosis for %s: ", patients[i].name);
+            scanf("%s", patients[i].diagnosis);
             found = 1;
-            printf("Student information updated.\n");
+            printf("Patient information updated.\n");
             break;
         }
     }
 
     if (!found) {
-        printf("Student not found.\n");
+        printf("Patient not found.\n");
     }
 }
 
-// Function to delete a student
-void deleteStudent(Student students[], int *count) {
+// Function to delete a patient
+void deletePatient(Patient patients[], int *count) {
     if (*count == 0) {
-        printf("No students to delete.\n");
+        printf("No patients to delete.\n");
         return;
     }
 
     char searchName[MAX_NAME_LENGTH];
-    printf("Enter name of student to delete: ");
+    printf("Enter name of patient to delete: ");
     scanf("%s", searchName);
 
     int found = 0;
     for (int i = 0; i < *count; i++) {
-        if (strcmp(students[i].name, searchName) == 0) {
+        if (strcmp(patients[i].name, searchName) == 0) {
             for (int j = i; j < *count - 1; j++) {
-                students[j] = students[j + 1];
+                patients[j] = patients[j + 1];
             }
             (*count)--;
             found = 1;
-            printf("Student deleted successfully.\n");
+            printf("Patient deleted successfully.\n");
             break;
         }
     }
 
     if (!found) {
-        printf("Student not found.\n");
+        printf("Patient not found.\n");
     }
 }
 
-// Function to display all students
-void displayStudents(Student students[], int count) {
+// Function to display all patients
+void displayPatients(Patient patients[], int count) {
     if (count == 0) {
-        printf("No students to display.\n");
+        printf("No patients to display.\n");
         return;
     }
 
-    printf("\nStudent Records:\n");
-    printf("Name\tAge\tGPA\n");
+    printf("\nPatient Records:\n");
+    printf("Name\tAge\tGender\tDiagnosis\n");
     for (int i = 0; i < count; i++) {
-        printf("%s\t%d\t%.2f\n", students[i].name, students[i].age, students[i].gpa);
+        printf("%s\t%d\t%s\t%s\n", patients[i].name, patients[i].age, patients[i].gender, patients[i].diagnosis);
     }
 }
 
 // Function to save data to file
-void saveData(Student students[], int count) {
-    FILE *fp = fopen("students.txt", "w");
+void saveData(Patient patients[], int count) {
+    FILE *fp = fopen("patients.txt", "w");
     if (fp == NULL) {
         printf("Error opening file.\n");
         return;
     }
 
     for (int i = 0; i < count; i++) {
-        fprintf(fp, "%s %d %.2f\n", students[i].name, students[i].age, students[i].gpa);
+        fprintf(fp, "%s %d %s %s\n", patients[i].name, patients[i].age, patients[i].gender, patients[i].diagnosis);
     }
 
     fclose(fp);
@@ -176,18 +179,16 @@ void saveData(Student students[], int count) {
 }
 
 // Function to load data from file
-void loadData(Student students[], int *count) {
-    FILE *fp = fopen("students.txt", "r");
+void loadData(Patient patients[], int *count) {
+    FILE *fp = fopen("patients.txt", "r");
     if (fp == NULL) {
         printf("No existing data found.\n");
         return;
     }
 
-    #pragma GCC diagnostic ignored "-Wformat-overflow"
-        while ((*count < MAX_STUDENTS) && (fscanf(fp, "%s %d %f", students[*count].name, &students[*count].age, &students[*count].gpa) != EOF)) {
+        while ((*count < MAX_PATIENTS) && (fscanf(fp, "%s %d %s %s", patients[*count].name, &patients[*count].age, patients[*count].gender, patients[*count].diagnosis) != EOF)) {
             (*count)++;
         }
-    #pragma GCC diagnostic warning "-Wformat-overflow"
 
     fclose(fp);
     printf("Data loaded successfully.\n");

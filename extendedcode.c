@@ -4,65 +4,27 @@
 #define MAX_MENU_ITEMS 10
 #define NEW_LINE printf("\n");
 
-typedef struct {
+typedef struct
+{
   char name[50];
   float price;
 } MenuItem;
 
-typedef struct{
+typedef struct
+{
   char name[100];
   int age;
   char adress[100];
   int phone;
-}Users;
-//Function for royalCustomers and their perks
-void NewRoyalCustomer();
-int TableNumber(){
-  int choice;
-  char Decision;
-  printf("Are you a royal customer?\n");
-  printf("1. Yes\n");
-  printf("2. No\n");
-  printf("Enter your choice: ");
-  scanf("%d", &choice);
-  int discount = 0;
-    //why the program doesn't take any input after this line?
-    if (choice == 1) {
-      printf("Welcome Royal Customer!\n");
-      printf("You have a 10%% discount on your bill!\n");
-      NEW_LINE
-      NEW_LINE 
-      discount = 1;
-      return discount;
-    }
-    if (choice == 2) {
-      
-      printf("Do you want to be a royal customer?(Y/N)\n");
-      scanf(" %c", &Decision); // Add a space before %c to consume the newline character
-      if (Decision == 'y' || Decision == 'Y') {
-        NewRoyalCustomer();
-      }
-    }
-    scanf("%c", &Decision);
-    if(Decision == 'y' || Decision == 'Y')
-    {
-    NewRoyalCustomer();
-    }
-    else{  
-      printf("Welcome!\n");
-      NEW_LINE
-      NEW_LINE 
-  }
-  return 0;
-  }
-
-
-//Incase of new membership of royal customer Take their details
-void NewRoyalCustomer(){
+} Users;
+// Function for royalCustomers and their perks
+void NewRoyalCustomer()
+{
   Users users;
-   FILE *fptr;
+  FILE *fptr;
   fptr = fopen("data.txt", "w");
-  if (fptr == NULL) {
+  if (fptr == NULL)
+  {
     printf("Error!");
     exit(1);
   }
@@ -71,7 +33,7 @@ void NewRoyalCustomer(){
   fprintf(fptr, "Name: %s\n", users.name);
   printf("Enter your age: ");
   scanf("%d", &users.age);
-  fprintf(fptr, "Age: %d\n", users.age);  
+  fprintf(fptr, "Age: %d\n", users.age);
   printf("Enter your adress: ");
   scanf("%s", users.adress);
   fprintf(fptr, "Adress: %s\n", users.adress);
@@ -81,8 +43,55 @@ void NewRoyalCustomer(){
   printf("Thank you for joining our royal customer program!\n");
 }
 
-void inputMenuItems(MenuItem menu[], int numItems) {
-  for (int i = 0; i < numItems; i++) {
+int TableNumber()
+{
+  int choice;
+  char Decision;
+  printf("Are you a loyal customer?\n");
+  printf("1. Yes\n");
+  printf("2. No\n");
+  printf("Enter your choice: ");
+  scanf("%d", &choice);
+  int discount = 0;
+  // why the program doesn't take any input after this line?
+  if (choice == 1)
+  {
+    printf("Welcome Royal Customer!\n");
+    printf("You have a 10%% discount on your bill!\n");
+    NEW_LINE
+    NEW_LINE
+    discount = 1;
+    return discount;
+  }
+  else if (choice == 2)
+  {
+
+    printf("Do you want to be a royal customer?(Y/N)\n");
+    scanf(" %c", &Decision); // Add a space before %c to consume the newline character
+    if (Decision == 'y' || Decision == 'Y')
+    {
+      NewRoyalCustomer();
+    }
+    else
+    {
+      printf("Welcome!\n");
+      NEW_LINE
+      NEW_LINE
+    }
+  }
+  else
+  {
+    printf("Welcome!\n");
+    NEW_LINE
+    NEW_LINE
+  }
+  return 0;
+}
+
+void inputMenuItems(MenuItem menu[], int numItems)
+{
+  for (int i = 0; i < numItems; i++)
+  {
     printf("Enter the name of menu item %d: \n", i + 1);
     scanf("%s", menu[i].name);
     printf("Enter the price of menu item %d: \n", i + 1);
@@ -177,7 +186,6 @@ int main()
   int discount = 0;
   discount = TableNumber();
   printf("Enter the number of menu items: \n");
-
   scanf("%d", &numItems);
   if (numItems > MAX_MENU_ITEMS)
   {
@@ -204,7 +212,8 @@ int main()
   {
     printMenu(menu, discount);
   }
-  else{
+  else
+  {
     printf("Thank you for visiting our restaurant!\n");
   }
 
