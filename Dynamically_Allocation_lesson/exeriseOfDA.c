@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #define Newline printf("\n");
 
-double sumOfElement(double *array, int numb)
+double sumOfElement(double array[], int numb)
 {
     double sum = 0.0;  // Initialize sum to 0
     for (int i = 0; i < numb; i++)
