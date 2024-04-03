@@ -118,9 +118,11 @@ int main(void)
   bool status = false;
   int value = 0;
   value = peek(q, &status);
-  if (status) printf("Peek Value: %d\n", value);
-  else printf("Peek is Empty\n");
-  
+  if (status)
+    printf("Peek Value: %d\n", value);
+  else
+    printf("Peek is Empty\n");
+
   value = dequeue(q, &status);
   if (status)
   {
