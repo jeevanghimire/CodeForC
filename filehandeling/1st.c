@@ -1,24 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>
+
 int main()
 {
-    FILE *fptr;
-    char c;
-    char fileName[20];
-    printf("Enter the name of file");
-    scanf("%s", fileName);
-    fptr = fopen(fileName, "w");
-    if (fptr == NULL)
+    int num;
+    FILE *numFile = fopen("Num.txt", "r");
+    FILE *primeFile = fopen("Prime.txt", "w");
+    if (numFile == NULL || primeFile == NULL)
     {
-        printf("File can not be created");
-        exit(0);
+        printf("File not found\n");
+        return 0;
     }
-    printf("Enter Text. Hit enter key to stop writing");
-    fflush(stdin);
-    while ((c = getchar())!='\n')
-        {
-            fputc(c,fptr);
+    while (fscanf(numFile, "%d", &num) != EOF)
+    {
+        
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) {
+                break;
+            }
+            if (i == num - 1) {
+                fprintf(primeFile, "%d\t", num);
+            }
         }
-    fclose(fptr);
-    return 0;
+    }
+    fclose(numFile);
+    fclose(primeFile);
+
+
+return 0;
 }
