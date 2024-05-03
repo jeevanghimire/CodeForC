@@ -12,6 +12,14 @@
       "externalConsole": false,
       "MIMode": "lldb",
       "preLaunchTask": "C/C++: clang build active file"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/jeevanghimire/Desktop/Github/CodeForC/missonCCodes",
+      "program": "/Users/jeevanghimire/Desktop/Github/CodeForC/missonCCodes/build/Debug/outDebug"
     }
   ],
   "version": "2.0.0"
