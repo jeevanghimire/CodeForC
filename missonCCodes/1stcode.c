@@ -1,17 +1,13 @@
-/*
-!                   arr          j
-!                     |          |
-!   arr[size] == [1,2,3,4,5,6,7,..n]
-!   int arr[size];
-        arr[2] == *(arr+2)
-*/
-
-#include <stdio.h>
-int main()
-{
-    int arr[5] = {1,2,3,4,5};
-    printf("%d\n",arr[2]);
-    printf("%d\n",*(arr+2));
-
-return 0;
+#include<stdio.h>
+	
+	void sum (int *a , int *b,int *sum);
+	int main()
+	{
+		int a = 10 , b = 20, Sum = 0;
+    sum(&a,&b,&sum);
+    printf("The sum is %d \n", sum);
+		return 0;
+	}
+void sum (int *a , int *b,int *Sum){
+    *Sum = *a + *b; 
 }
