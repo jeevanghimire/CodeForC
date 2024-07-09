@@ -35,35 +35,40 @@ void conqure(int arr[], int si,int mid, int en){
 
     int merge[en-si+1];
     int idx1= si,idx2= mid+1,x=0;
-    while(idx1<=mid && idx2<=en){
-        if(arr[idx1]<arr[idx2]){
+
+
+    while (idx1 <= mid && idx2 <= en)
+    {
+        if (arr[idx1] < arr[idx2])
+        {
             merge[x] = arr[idx1];
-            x++; idx1++;
+            x++;
+            idx1++;
         }
-        else{
+        else
+        {
             merge[x] = arr[idx2];
-            x++; idx2++;
+            x++;
+            idx2++;
         }
     }
-    while(idx1<=mid){
+    while (idx1 <= mid)
+    {
         merge[x] = arr[idx1];
-        x++; idx1++;
+        x++;
+        idx1++;
     }
-    while(idx2<=en){
+    while (idx2 <= en)
+    {
         merge[x] = arr[idx2];
-        x++; idx2++;
+        x++;
+        idx2++;
     }
     for (int i = 0; i < en-si+1; i++)
     {
         arr[si+i] = merge[i];
+        
     }
-    //printing array
-    for (int i = 0; i < en-si+1; i++)
-    {
-        cout<<arr[i]<<" ";
-    }
-    cout<<endl;
-    targetfound(si,en, merge, 13);
 }
 //MARK: Divide function
 void divide(int arr[], int si, int en)
@@ -84,9 +89,11 @@ int main()
     int sizeofarr = sizeof(arr)/sizeof(arr[0]);
     //calling function
     divide(arr,0,sizeofarr-1);
+
+    //printing array
+    for(int i =0;i<sizeofarr;i++){
+        cout<<arr[i]<<" ";
+    }
     cout<<endl;
-    
-
-
 return 0;
 }
