@@ -57,5 +57,12 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "files.associations": {
+    "*.asm": "asm-intel-x86-generic",
+    "MakeFile": "makefile",
+    "Make": "makefile",
+    "*.swift": "swift",
+    "istream": "cpp"
+  }
 }
