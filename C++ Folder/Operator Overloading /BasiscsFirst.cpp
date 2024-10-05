@@ -6,13 +6,13 @@ TODO addition operator overloading
      * car1 + car2;
      *
 */
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 class point {
     private:
     int x,y;
 
-    public:
+public:
     point(int X=0, int Y = 0): x(X), y(Y){}
 
     point operator + ( point& P)  {
