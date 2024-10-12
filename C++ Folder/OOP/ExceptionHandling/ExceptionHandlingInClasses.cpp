@@ -9,7 +9,7 @@ private:
 public:
     DivisionException(double num, double denom) : numerator(num), denominator(denom) {}
 
-    void what() const {
+    void what() {
         cout << "Error: Division by " << denominator << " with numerator " << numerator << endl;
     }
 };
@@ -35,8 +35,8 @@ int main() {
         Division div(25.0, 0.0);
         cout << "Result: " << div.performDivision() << endl;
     }
-    catch (DivisionException& e) {
-        e.what();  // Display detailed error message
+    catch (DivisionException& err) {
+        err.what();  // Display detailed error message
     }
 
     return 0;
