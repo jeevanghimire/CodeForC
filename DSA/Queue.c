@@ -3,7 +3,8 @@
 #include <stdlib.h>
 
 #define returnNULL 0
-
+#define true 1 
+#define false 0
 typedef struct Node
 {
   int Data;

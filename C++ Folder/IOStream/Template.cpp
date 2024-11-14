@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-    template <typename T> //Mark: Template declaration
-    T add(T a, T b){
-        return a+b;
-    }
+template <typename T> //MARK: Template declaration
+T add(T a, T b){
+    return a+b;
+}
 
 int main()
 {

@@ -1,7 +1,3 @@
 
-initialfileHandling: initialfileHandling.cpp
-	g++ -o initialfileHandling initialfileHandling.cpp && ./initialfileHandling
-
-clean: 
-	rm initialfileHandling
-	
+initialfileHandling: initialfileHandling.cpp 
+	g++ -o initialfileHandling initialfileHandling.cpp && ./initialfileHandling && rm initialfileHandling
