@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-
 #define returnNULL 0
 #define true 1 
 #define false 0
