@@ -1,13 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#define returnNULL 0
-#define true 1 
-#define false 0
-typedef struct Node
+typedef struct NodeIndicator
 {
   int Data;
-  struct Node *Next;
+  struct NodeIndicator *Next;
 } Node_t;
 
 typedef struct
@@ -65,7 +62,7 @@ int dequeue(Queue *q, bool *status)
   if (isEmpty(q))
   {
     *status = false;
-    return returnNULL;
+    return NULL;
   }
   *status = true;
   int value = q->Head->Data;

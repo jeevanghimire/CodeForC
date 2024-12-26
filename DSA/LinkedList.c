@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 // Define the structure of a node
-typedef struct Node
+typedef struct NodeIndicator
 {
   int data;
-  struct Node *next;
+  struct NodeIndicator *next;
 } NodeIndicator;
 
 // Define the structure of a linked list
