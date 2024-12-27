@@ -10,17 +10,18 @@ typedef struct {
     int rear;
 } CircularQueue;
 
-void initialize(CircularQueue *q,int MaxSize) {
+void initialize(CircularQueue *q, int MaxSize) {
     q->MaxCap = MaxSize;
+    q->items = (int *)malloc(sizeof(int) * MaxSize);
     q->front = -1;
     q->rear = -1;
 }
 
 bool isFull(CircularQueue *q) {
     if ((q->front == 0 && q->rear == q->MaxCap - 1) || (q->front == q->rear + 1)) {
-        return false;
+        return true;  // q->front == (q->front +1)%MaxCap;  this is better for bool
     }
-    return true;
+    return false;
 }
 
 int isEmpty(CircularQueue *q) {

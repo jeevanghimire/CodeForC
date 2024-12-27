@@ -75,7 +75,6 @@ Stack stack;
     stack.StackElement = (int *)malloc(max_size * sizeof(int));
     stack.size = 0;
     stack.MaxSize = max_size;
-
     // Push elements onto the stack
     int element;
     for (int i = 0; i < max_size; i++) {
@@ -97,15 +96,19 @@ Stack stack;
     // Pop elements from the stack
     int popped_element;
     char choice;
-    do {
+    while (true) {
         if (pop(&stack, &popped_element)) {
             printf("Popped element is %d\n", popped_element);
         } else {
             printf("Stack is empty. Cannot pop.\n");
+            break;
         }
         printf("Do you want to pop another element? (y/n): ");
         scanf(" %c", &choice);
-    } while (choice == 'y' || choice == 'Y');
+        if (choice != 'y' && choice != 'Y') {
+            break;
+        }
+    }
 
     // Check if the stack is empty
     if (is_empty(&stack)) {
