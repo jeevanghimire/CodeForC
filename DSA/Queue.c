@@ -93,7 +93,7 @@ void DestoryQueue(Queue *q)
   free(q);
 }
 
-int main(void)
+int main()
 {
 
   Queue *q = CreateQueue();
