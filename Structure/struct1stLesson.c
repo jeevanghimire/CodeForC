@@ -16,11 +16,38 @@ int ReturnStruct(struct PersonalInfo a[]){
 
 
 int main(){
-  int n;
-  scanf("%d",&n);
-  struct PersonalInfo Person[n];
-  int resultu = ReturnStruct(Person);
-  printf("Result: %d\n",resultu);
+struct PersonalInfo Momentum[50];
+for(int i =0;i<50;i++){
+scanf("%s",Momentum[i].FirstName);
+scanf("%s",Momentum.SureName);
+scanf("%s",Momentum.gender);
+scanf("%d",&Momentum.age);
+
+}
+
+printf("%s\n",Momentum.FirstName);
+printf("%s\n",Momentum.SureName);
+printf("%s\n",Momentum.gender);
+printf("%d\n",Momentum.age);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // for(int i =0;i<n;i++){
   //   printf("Enter your First Name:\n");
   //   scanf("%s",Person[i].FirstName);
